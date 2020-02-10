@@ -10,15 +10,12 @@
 
 <div class="content">
  <div class="card-body">
-  <div class="col-12">
+ <div class="col-12">
  <div class="alert alert-danger">
   <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
    <i class="fa fa-times"></i>
   </button>
-  <span>
-      <?= $msg; ?>
-  </span>
+   <span><?= $msg; ?></span>
+ </div>
  </div>
 </div>
- </div>
-
