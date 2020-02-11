@@ -169,16 +169,16 @@ class Usuarios extends CI_Controller {
 //        $this->load->view('includes/footer');
 //    }
 
-//    public function excluir($id) {
-//        $this->verificar_sessao();
-//
-//        $this->db->where('idUsuario', $id);
-//        if ($this->db->delete('usuarios')) {
-//            redirect('Usuarios/5');
-//        } else {
-//            redirect('Usuarios/6');
-//        }
-//    }
+    public function excluir($id) {
+        //$this->verificar_sessao();
+
+        $this->db->where('idUsuario', $id);
+        if ($this->db->delete('usuarios')) {
+            redirect('Usuarios/5');
+        } else {
+            redirect('Usuarios/6');
+        }
+    }
 
 //    public function salvarSenha() {
 //        $this->verificar_sessao();
