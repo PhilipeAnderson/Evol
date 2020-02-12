@@ -266,6 +266,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
                     <span class="sidebar-normal"> Permissões </span>
                   </a>
                 </li>
+                
+                <li>
+                  <a data-toggle="collapse" aria-expanded="false" href="#multiusuarios">
+                    <span class="sidebar-mini-icon">FS</span>
+                    <span class="sidebar-normal"> Filiais
+                      <b class="caret"></b>
+                    </span>
+                  </a>
+                  <div class="collapse" id="multiusuarios">
+                    <ul class="nav">
+                      <li>
+                        <a href="<?= base_url('Filiais') ?>">
+                          <span class="sidebar-mini-icon">L</span>
+                          <span class="sidebar-normal"> Listar </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="<?= base_url('Filiais/cadastrar') ?>">
+                          <span class="sidebar-mini-icon">C</span>
+                          <span class="sidebar-normal"> Cadastrar </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="<?= base_url('Filiais') ?>">
+                          <span class="sidebar-mini-icon">E</span>
+                          <span class="sidebar-normal"> Editar </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                
                 <li>
                   <a href="#">
                     <span class="sidebar-mini-icon">BK</span>
@@ -316,9 +348,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
     </div>
     <p class="navbar-brand">
      Bem vindo: <br>
-     //<?php
-//        echo $this->session->userdata('nome');
-//     ?>
+     <?php
+        echo $this->session->userdata('nome');
+     ?>
     </p>
    </div>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -330,7 +362,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
     <ul class="navbar-nav ml-auto">
      <li class="search-bar input-group">
       <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"></i>
-       <span class="d-lg-none d-md-block">Search</span>
+       <span class="d-lg-none d-md-block">Buscar</span>
       </button>
      </li>
      <li class="dropdown nav-item">
@@ -338,7 +370,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
        <div class="notification d-none d-lg-block d-xl-block"></div>
        <i class="fa fa-exclamation-circle"></i>
        <p class="d-lg-none">
-        Notifications
+        Notificações
        </p>
       </a>
       <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">

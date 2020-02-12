@@ -13,19 +13,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Dashboard extends CI_Controller {
 
-//    public function verificar_sessao() {
-//        if ($this->session->userdata('logado') == false) {
-//            redirect('Dashboard/login');
-//        }
-//    }
+    public function verificar_sessao() {
+        if ($this->session->userdata('logado') == false) {
+            redirect('Dashboard/login');
+        }
+    }
 
     public function index() {
         $this->load->view('includes/header');
         $this->load->view('dashboard');
         $this->load->view('includes/footer');
         
-//        $this->verificar_sessao();
-//
+        $this->verificar_sessao();
+
 //        if ($this->session->userdata('nivelUsuario') != 4) {
 //            $this->load->view('includes/header');
 //            $this->load->view('dashboard');
@@ -38,42 +38,42 @@ class Dashboard extends CI_Controller {
         
     }
 
-//    public function login() {
-//        $this->load->view('login');
-//    }
+    public function login() {
+        $this->load->view('login');
+    }
 
-//    public function logar() {
-//
-//        $email = $this->input->post('loginUsuario');
-//        $senha = md5($this->input->post('senhaUsuario'));
-//
-//        $this->db->where('loginUsuario', $email);
-//        $this->db->where('senhaUsuario', $senha);
-//        $this->db->where('situacaoUsuario', 0);
-//
-//        $data['usuarios'] = $this->db->get('usuarios')->result();
-//
-//        if (count($data['usuarios']) == 1) {
-//            $dados['matricula'] = $data['usuarios'][0]->matriculaUsuario;
-//            $dados['situacaoUsuario'] = $data['usuarios'][0]->situacaoUsuario;
-//            $dados['nivelUsuario'] = $data['usuarios'][0]->nivelUsuario;
-//            $dados['filialUsuario'] = $data['usuarios'][0]->filialUsuario;
-//            $dados['nome'] = $data['usuarios'][0]->nomeUsuario;
-//            $dados['emailUsuario'] = $data['usuarios'][0]->emailUsuario;
-//            $dados['celularUsuario'] = $data['usuarios'][0]->celularUsuario;
-//            $dados['id'] = $data['usuarios'][0]->idUsuario;
-//            $dados['logado'] = true;
-//
-//            $this->session->set_userdata($dados);
-//            redirect('Dashboard');
-//        } else {
-//            redirect('Dashboard/login');
-//        }
-//    }
+    public function logar() {
 
-//    public function logout() {
-//        $this->session->sess_destroy();
-//        redirect('Dashboard/login');
-//    }
+        $email = $this->input->post('loginUsuario');
+        $senha = md5($this->input->post('senhaUsuario'));
+
+        $this->db->where('loginUsuario', $email);
+        $this->db->where('senhaUsuario', $senha);
+        $this->db->where('situacaoUsuario', 0);
+
+        $data['usuarios'] = $this->db->get('usuarios')->result();
+
+        if (count($data['usuarios']) == 1) {
+            $dados['matricula'] = $data['usuarios'][0]->matriculaUsuario;
+            $dados['situacaoUsuario'] = $data['usuarios'][0]->situacaoUsuario;
+            $dados['nivelUsuario'] = $data['usuarios'][0]->nivelUsuario;
+            $dados['filialUsuario'] = $data['usuarios'][0]->filialUsuario;
+            $dados['nome'] = $data['usuarios'][0]->nomeUsuario;
+            $dados['emailUsuario'] = $data['usuarios'][0]->emailUsuario;
+            $dados['celularUsuario'] = $data['usuarios'][0]->celularUsuario;
+            $dados['id'] = $data['usuarios'][0]->idUsuario;
+            $dados['logado'] = true;
+
+            $this->session->set_userdata($dados);
+            redirect('Dashboard');
+        } else {
+            redirect('Dashboard/login');
+        }
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect('Dashboard/login');
+    }
 
 }

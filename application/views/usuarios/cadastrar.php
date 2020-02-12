@@ -64,7 +64,7 @@
          </div>
          
          <div class="col-md-2">
-          <label for="filialUsuario" style="color:#ff8379;">Unidade:</label>
+          <label for="filialUsuario" style="color:#ff8379;">Filial:</label>
           <select style="border-color:#5282b2" id="filialUsuario" name="filialUsuario" class="browser-default custom-select custom-select-md mb-3">
            <?php foreach($filial as $fil){ ?>
            <option style="background-color:#00dccd; color:#000" value="<?= $fil->idFilial?>"><?= $fil->nomeFilial;?></option>

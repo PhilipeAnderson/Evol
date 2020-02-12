@@ -13,14 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Clientes extends CI_Controller {
 
-//    public function verificar_sessao() {
-//        if ($this->session->userdata('logado') == false) {
-//            redirect('Dashboard/login');
-//        }
-//    }
+    public function verificar_sessao() {
+        if ($this->session->userdata('logado') == false) {
+            redirect('Dashboard/login');
+        }
+    }
 
     public function index($indice = null) {
-        //$this->verificar_sessao();
+        $this->verificar_sessao();
 
         if ($this->session->userdata('nivelUsuario') != 4 && $this->session->userdata('nivelUsuario') != 3) {
 
@@ -134,7 +134,7 @@ class Clientes extends CI_Controller {
     }
 
     public function cadastrar() {
-        //$this->verificar_sessao();
+        $this->verificar_sessao();
 
         $this->load->view('includes/header');
         $this->load->view('clientes/cadastrar');
@@ -142,7 +142,7 @@ class Clientes extends CI_Controller {
     }
 
     public function cadastrando() {
-        //$this->verificar_sessao();
+        $this->verificar_sessao();
 
         $data['razaoSocial'] = $this->input->post('razaoSocial');
         $data['cnpj'] = $this->input->post('cnpj');

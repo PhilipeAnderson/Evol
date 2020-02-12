@@ -53,7 +53,7 @@
                                 }
                                     ?>
                         <br>
-                        Unidade: <?php 
+                        Filial: <?php 
                                   if($this->session->userdata('filialUsuario') == 1){ 
                                       echo "Curitiba";
                                    }else if($this->session->userdata('filialUsuario') == 2){
@@ -73,7 +73,7 @@
                       </h4>
                       <br>
                       
-                       <h3>Dados do Funcionário</h3>
+                       <h3>Dados do Colaborador</h3>
                         <h4>
                          Nome: <?php echo $this->session->userdata('nome') ?><br>
                          Telefone: <?php echo $this->session->userdata('celularUsuario')?><br> 
