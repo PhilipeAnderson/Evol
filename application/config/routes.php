@@ -53,5 +53,6 @@ $route['default_controller'] = 'Dashboard';
 $route['Usuarios/(:num)'] = "Usuarios/index/$1";
 $route['Filiais/(:num)'] = "Filiais/index/$1";
 $route['Clientes/(:num)'] = "Clientes/index/$1";
+$route['Servicos/(:num)'] = "Servicos/index/$1";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

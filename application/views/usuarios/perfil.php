@@ -10,7 +10,6 @@
  * @copyright (c) 2019, Philipe Anderson | phillinks.com.br
 -->
 
-
 <div class="content">
  <div class="row">
   <div class="col-12">

@@ -7,6 +7,7 @@
  * @author Philipe Anderson De Campos | http://www.phillinks.com.br
  * @copyright (c) 2020, Philipe Anderson | phillinks.com.br
 -->
+
       <div class="content">
         <div class="row">
           <div class="col-12">

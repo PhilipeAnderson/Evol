@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author Philipe Anderson De Campos | philipe@phillinks.com.br
  * @copyright (c) 2020, Philipe Anderson | phillinks.com.br
  */
+
 class Dashboard extends CI_Controller {
 
     public function verificar_sessao() {

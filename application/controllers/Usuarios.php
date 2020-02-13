@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author Philipe Anderson De Campos | philipe@phillinks.com.br
  * @copyright (c) 2020, Philipe Anderson | phillinks.com.br
  */
+
 class Usuarios extends CI_Controller {
 
     public function verificar_sessao() {
@@ -86,10 +87,10 @@ class Usuarios extends CI_Controller {
 
     public function cadastrar() {
         $this->verificar_sessao();
-//        
+        
         $dados['filial'] = $this->db->get('filiais')->result();
 //        $dados['funcao'] = $this->db->get('permissoes')->result();
-//
+
         $this->load->view('includes/header');
         $this->load->view('usuarios/cadastrar', $dados);
         $this->load->view('includes/footer');
