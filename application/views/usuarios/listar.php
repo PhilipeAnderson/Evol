@@ -60,8 +60,8 @@
            <td><?= $usu->nomeUsuario; ?></td>
            <td><?= $usu->emailUsuario; ?></td>
            <td><?= $usu->celularUsuario; ?></td>
-           <td><?= $usu->nomeFilial; ?></td> <!--Nome: trocado filialUsuario por nomeFilial precisa ser populado-->          
-           <td><?= $usu->nivelUsuario==1?'Diretor':'Coordenador'; ?></td> <!--Nome: trocado nivelUsuario por nomeFuncao precisa ser populado-->
+           <td><?= $usu->nomeFilial; ?></td>          
+           <td><?= $usu->nomeFuncao; ?></td>
            <td><?= $usu->situacaoUsuario==0?'<i style="color:#00FF00" class="fa fa-check-circle"></i>':'<i style="color:#FF5000" class="fa fa-times-circle"></i>'; ?></td>
            <td>
             <a href="<?= base_url('Usuarios/editar/'.$usu->idUsuario); ?>" class="btn btn-success btn-group"><i class="fa fa-pen"></i></a>

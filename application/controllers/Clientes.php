@@ -50,8 +50,9 @@ class Clientes extends CI_Controller {
             }
             $this->load->view('clientes/listar', $dados);
             $this->load->view('includes/footer');
+        
             
-        } else if ($this->session->userdata('nivelUsuario') == 4) {
+        }else if ($this->session->userdata('nivelUsuario') == 4) {
 
             $this->db->select('*');
             $this->db->where('matricula', $this->session->userdata('matricula'));
@@ -59,7 +60,7 @@ class Clientes extends CI_Controller {
             $dados['clientes'] = $this->db->get('clientes')->result();
 
 
-            $this->load->view('includes/header');
+            $this->load->view('includes/headerVendedor');
             if ($indice == 1) {
                 $data['msg'] = "Cliente cadastrado com sucesso! Parabéns a meta é certa!";
                 $this->load->view('includes/msg_success', $data);
@@ -79,7 +80,7 @@ class Clientes extends CI_Controller {
                 $data['msg'] = "Não foi possível excluir este cliente! Contate a equipe de T.I.";
                 $this->load->view('includes/msg_error', $data);
             }
-            $this->load->view('clientes/listar', $dados);
+            $this->load->view('clientes/listarVendedor', $dados);
             $this->load->view('includes/footer');
             
         } else if ($this->session->userdata('nivelUsuario') == 3) {
@@ -112,15 +113,25 @@ class Clientes extends CI_Controller {
             $this->load->view('includes/footer');
         }
     }
+    
 
     public function visualizar($id = null) {
         $this->verificar_sessao();
 
         $this->db->where('idCliente', $id);
         $data['cliente'] = $this->db->get('clientes')->result();
-        $this->load->view('includes/header');
-        $this->load->view('clientes/visualizar', $data);
-        $this->load->view('includes/footer');
+        if ($this->session->userdata('nivelUsuario') != 4) {
+            $this->load->view('includes/header');
+            $this->load->view('clientes/visualizar' , $data);
+            $this->load->view('includes/footer');
+        } else {
+            $this->load->view('includes/headerVendedor');
+            $this->load->view('clientes/visualizar' , $data);
+            $this->load->view('includes/footer');
+        }
+//        $this->load->view('includes/header');
+//        $this->load->view('clientes/visualizar', $data);
+//        $this->load->view('includes/footer');
     }
 
     public function ordemPorAlfabetica() {
@@ -128,18 +139,38 @@ class Clientes extends CI_Controller {
         $this->db->select('*');
         $this->db->order_by('razaoSocial', 'name');
         $dados['clientes'] = $this->db->get('clientes')->result();
+        
+        if ($this->session->userdata('nivelUsuario') != 4) {
+            $this->load->view('includes/header');
+            $this->load->view('clientes/listar' , $dados);
+            $this->load->view('includes/footer');
+        } else {
+            $this->load->view('includes/headerVendedor');
+            $this->load->view('clientes/listar' , $dados);
+            $this->load->view('includes/footer');
+        }
 
-        $this->load->view('includes/header');
-        $this->load->view('clientes/listar', $dados);
-        $this->load->view('includes/footer');
+//        $this->load->view('includes/header');
+//        $this->load->view('clientes/listar', $dados);
+//        $this->load->view('includes/footer');
     }
 
     public function cadastrar() {
         $this->verificar_sessao();
+        
+        if ($this->session->userdata('nivelUsuario') != 4) {
+            $this->load->view('includes/header');
+            $this->load->view('clientes/cadastrar');
+            $this->load->view('includes/footer');
+        } else {
+            $this->load->view('includes/headerVendedor');
+            $this->load->view('clientes/cadastrar');
+            $this->load->view('includes/footer');
+        }
 
-        $this->load->view('includes/header');
-        $this->load->view('clientes/cadastrar');
-        $this->load->view('includes/footer');
+//        $this->load->view('includes/header');
+//        $this->load->view('clientes/cadastrar');
+//        $this->load->view('includes/footer');
     }
 
     public function cadastrando() {

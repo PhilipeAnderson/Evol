@@ -71,30 +71,34 @@
          <div class="col-md-2">
           <label for="filialUsuario" style="color:#ff8379;">Filial:</label>
           <select style="border-color:#5282b2" id="filialUsuario" name="filialUsuario" class="browser-default custom-select custom-select-md mb-3">
-            <?php
+            
+              <?php
               foreach ($filial as $fil) {
                   if ($fil->idFilial == $usuario[0]->filialUsuario) {
                       ?>
                    <option style="background-color:#00dccd; color:#000" value="<?= $fil->idFilial ?>" selected ><?= $fil->nomeFilial; ?></option>
-               <?php } else { ?>
+                <?php } else { ?>
                    <option style="background-color:#00dccd; color:#000" value="<?= $fil->idFilial ?>" ><?= $fil->nomeFilial; ?></option>
-               <?php } ?>
+                <?php } ?>
             <?php } ?>
+                   
           </select>
          </div>
 
          <div class="col-md-2">
           <label for="nivelUsuario" style="color:#ff8379;">Função:</label>
           <select style="border-color:#5282b2" id="nivelUsuario" name="nivelUsuario" class="browser-default custom-select custom-select-md mb-3">
+            
               <?php
               foreach ($funcao as $func) {
                   if ($func->idPermissao == $usuario[0]->nivelUsuario) {
                       ?>
                    <option style="background-color:#00dccd; color:#000" value="<?= $func->idPermissao ?>" selected ><?= $func->nomeFuncao; ?></option>
-               <?php } else { ?>
+                <?php } else { ?>
                    <option style="background-color:#00dccd; color:#000" value="<?= $func->idPermissao ?>" ><?= $func->nomeFuncao; ?></option>
-    <?php } ?>
-<?php } ?>
+                <?php } ?>
+            <?php } ?>
+                   
           </select>
          </div>
 

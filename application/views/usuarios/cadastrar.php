@@ -59,7 +59,7 @@
            <option style="background-color:#00dccd; color:#000" value="1">PR</option>
            <option style="background-color:#00dccd; color:#000" value="2">GO</option>
            <option style="background-color:#00dccd; color:#000" value="3">SP</option>
-           <option style="background-color:#00dccd; color:#000" value="4">Estado Temporário</option>
+<!--           <option style="background-color:#00dccd; color:#000" value="4">Estado Temporário</option>-->
           </select>
          </div>
          

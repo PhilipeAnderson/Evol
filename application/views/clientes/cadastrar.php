@@ -186,7 +186,7 @@
 
           <div class="col-md-4">
            <div class="form-group">
-            <label for="filial" style="color:#ff8379; border-color:#5282b2">Unidade:</label>
+            <label for="filial" style="color:#ff8379; border-color:#5282b2">Filial:</label>
             <input type="text" id="filial" name="filial" class="form-control" style="color:orange; border-color:#5282b2" value="<?=$this->session->userdata('filialUsuario');
             if($this->session->userdata('filialUsuario')==1){
                 echo "º Matriz | Curitiba";

@@ -75,8 +75,7 @@
            <td><?= $cli->situacaoDoContrato==0?'<i style="color:#FF5000" class="fa fa-times-circle"></i>':'<i style="color:#00FF00" class="fa fa-check-circle"></i>'; ?></td>
            <td>
             <a href="<?= base_url('Clientes/visualizar/'.$cli->idCliente); ?>" class="btn btn-primary btn-group"><i class="fa fa-eye"></i></a>
-            <a href="<?= base_url('Clientes/editar/'.$cli->idCliente); ?>" class="btn btn-success btn-group"><i class="fa fa-pen"></i></a>
-            <a href="<?= base_url('Clientes/excluir/'.$cli->idCliente); ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente EXCLUIR este cliente?')"><i class="fa fa-trash"></i></a>
+            
            </td>
           </tr>
           <?php } ?>

@@ -34,7 +34,7 @@
          <div class="col-md-3">
           <div class="form-group">
            <label for="nomeFuncao" style="color:#ff8379;">Função:</label>
-           <input style="border-color:#5282b2" type="text" id="nomeFuncao" name="nomeFuncao" class="form-control" placeholder="Nome do Serviço" required>
+           <input style="border-color:#5282b2" type="text" id="nomeFuncao" name="nomeFuncao" class="form-control" placeholder="Nome da Função" required>
           </div>
          </div>
         </div>
@@ -42,7 +42,7 @@
          <div class="col-md-8">
           <div class="form-group">
            <label for="descricaoFuncao" style="color:#ff8379;">Descrição:</label>
-           <input style="border-color:#5282b2" type="text" id="descricaoFuncao" name="descricaoFuncao" class="form-control" placeholder="Descreva o Serviço" required>
+           <input style="border-color:#5282b2" type="text" id="descricaoFuncao" name="descricaoFuncao" class="form-control" placeholder="Descreva a Função" required>
           </div>  
          </div>
         </div>

@@ -27,15 +27,15 @@ class Dashboard extends CI_Controller {
         
         $this->verificar_sessao();
 
-//        if ($this->session->userdata('nivelUsuario') != 4) {
-//            $this->load->view('includes/header');
-//            $this->load->view('dashboard');
-//            $this->load->view('includes/footer');
-//        } else {
-//            $this->load->view('includes/headerVendedor');
-//            $this->load->view('dashboard');
-//            $this->load->view('includes/footer');
-//        }
+        if ($this->session->userdata('nivelUsuario') != 4) {
+            $this->load->view('includes/header');
+            $this->load->view('dashboard');
+            $this->load->view('includes/footer');
+        } else {
+            $this->load->view('includes/headerVendedor');
+            $this->load->view('dashboard');
+            $this->load->view('includes/footer');
+        }
         
     }
 

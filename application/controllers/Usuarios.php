@@ -24,11 +24,11 @@ class Usuarios extends CI_Controller {
         $this->verificar_sessao();
 
         $this->db->select('*');
-//        $this->db->join('permissoes', 'nivelUsuario=idPermissao', 'inner');
+        $this->db->join('permissoes', 'nivelUsuario=idPermissao', 'inner');
         $this->db->join('filiais', 'filialUsuario=idFilial', 'inner');
-//        $this->db->order_by('matriculaUsuario', 'ASC');
+        $this->db->order_by('matriculaUsuario', 'ASC');
         $dados['usuarios'] = $this->db->get('usuarios')->result();
-//
+
         $this->load->view('includes/header');
         if ($indice == 1) {
             $data['msg'] = "Usuário cadastrado com sucesso!";
@@ -60,36 +60,36 @@ class Usuarios extends CI_Controller {
         $this->load->view('includes/footer');
     }
 
-//    public function ordemPorAlfabetica() {
-//        $this->verificar_sessao();
-//        $this->db->select('*');
-//        $this->db->join('permissoes', 'nivelUsuario=idPermissao', 'inner');
-//        $this->db->order_by('nomeUsuario', 'name');
-//        $dados['usuarios'] = $this->db->get('usuarios')->result();
-//
-//        $this->load->view('includes/header');
-//        $this->load->view('usuarios/listar', $dados);
-//        $this->load->view('includes/footer');
-//    }
+    public function ordemPorAlfabetica() {
+        $this->verificar_sessao();
+        $this->db->select('*');
+        $this->db->join('permissoes', 'nivelUsuario=idPermissao', 'inner');
+        $this->db->order_by('nomeUsuario', 'name');
+        $dados['usuarios'] = $this->db->get('usuarios')->result();
 
-//    public function ordemPorNivel() {
-//        $this->verificar_sessao();
-//
-//        $this->db->select('*');
-//        $this->db->join('permissoes', 'nivelUsuario=idPermissao', 'inner');
-//        $this->db->order_by('nivelUsuario', 'name');
-//        $dados['usuarios'] = $this->db->get('usuarios')->result();
-//
-//        $this->load->view('includes/header');
-//        $this->load->view('usuarios/listar', $dados);
-//        $this->load->view('includes/footer');
-//    }
+        $this->load->view('includes/header');
+        $this->load->view('usuarios/listar', $dados);
+        $this->load->view('includes/footer');
+    }
+
+    public function ordemPorNivel() {
+        $this->verificar_sessao();
+
+        $this->db->select('*');
+        $this->db->join('permissoes', 'nivelUsuario=idPermissao', 'inner');
+        $this->db->order_by('nivelUsuario', 'name');
+        $dados['usuarios'] = $this->db->get('usuarios')->result();
+
+        $this->load->view('includes/header');
+        $this->load->view('usuarios/listar', $dados);
+        $this->load->view('includes/footer');
+    }
 
     public function cadastrar() {
         $this->verificar_sessao();
         
         $dados['filial'] = $this->db->get('filiais')->result();
-//        $dados['funcao'] = $this->db->get('permissoes')->result();
+        $dados['funcao'] = $this->db->get('permissoes')->result();
 
         $this->load->view('includes/header');
         $this->load->view('usuarios/cadastrar', $dados);
@@ -121,7 +121,7 @@ class Usuarios extends CI_Controller {
         $this->verificar_sessao();
 
         $data['filial'] = $this->db->get('filiais')->result();
-        //$data['funcao'] = $this->db->get('permissoes')->result();
+        $data['funcao'] = $this->db->get('permissoes')->result();
 
         $this->db->where('idUsuario', $id);
 
