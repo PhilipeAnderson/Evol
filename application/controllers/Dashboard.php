@@ -21,9 +21,6 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('includes/header');
-        $this->load->view('dashboard');
-        $this->load->view('includes/footer');
         
         $this->verificar_sessao();
 

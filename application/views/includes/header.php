@@ -389,7 +389,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');?>
         <a href="#" class="nav-item dropdown-item">Tem email novo em sua cx de entrada</a>
        </li>
        <li class="nav-link">
-        <a href="javascript:void(0)" class="nav-item dropdown-item">Confira as novas atualizoções de venda</a>
+        <a href="javascript:void(0)" class="nav-item dropdown-item">Confira as novas atualizações de venda</a>
        </li>
        <li class="nav-link">
         <a href="javascript:void(0)" class="nav-item dropdown-item">Você possui 5 novas tarefas</a>
