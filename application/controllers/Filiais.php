@@ -25,7 +25,8 @@ class Filiais extends CI_Controller {
 
         $this->db->select('*');
         $dados['filial'] = $this->db->get('filiais')->result();
-
+        
+        if ($this->session->userdata('nivelUsusario') !=8 ){
         $this->load->view('includes/header');
         if ($indice == 1) {
             $data['msg'] = "Filial cadastrada com sucesso!";
@@ -48,6 +49,30 @@ class Filiais extends CI_Controller {
         }
         $this->load->view('Filiais/listar', $dados);
         $this->load->view('includes/footer');
+    }else{
+        $this->load->view('includes/headerRecursosHumanos');
+        if ($indice == 1) {
+            $data['msg'] = "Filial cadastrada com sucesso!";
+            $this->load->view('includes/msg_success', $data);
+        }else if($indice ==2) {
+            $data['msg'] = "Erro ao cadastrar a filial no Banco de Dados!";
+            $this->load->view('includes/msg_error', $data);
+        } else if ($indice == 3) {
+            $data['msg'] = "Filial editada com sucesso!";
+            $this->load->view('includes/msg_success', $data);
+        } else if ($indice == 4) {
+            $data['msg'] = "Erro ao editar a filial no Banco de Dados!";
+            $this->load->view('includes/msg_error', $data);
+        } else if ($indice == 5) {
+            $data['msg'] = "Filial excluida com sucesso!";
+            $this->load->view('includes/msg_success', $data);
+        } else if ($indice == 6) {
+            $data['msg'] = "Erro ao excluir a filial no Banco de Dados!";
+            $this->load->view('includes/msg_error', $data);
+        }
+        $this->load->view('Filiais/listar', $dados);
+        $this->load->view('includes/footer');
+        }
     }
 
     public function cadastrar() {

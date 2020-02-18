@@ -19,6 +19,18 @@ class Permissoes extends CI_Controller {
             redirect('Dashboard/login');
         }
     }
+    
+//    public function permissoesDeFuncoes(){
+//        $this->verificar_sessao();
+//        
+//        $dados['permissoes'] = $this->db->get('permissoes')->result;
+//        
+//        if($dados == 0){
+//            echo('Permissao Negada');
+//        }else{
+//            echo('Permissao Concedida');
+//        }
+//    }
 
     public function index($indice = null) {
         $this->verificar_sessao();
@@ -109,16 +121,5 @@ class Permissoes extends CI_Controller {
         }
     }
     
-//    public function permissoes(){
-//        $this->verificar_sessao();
-//        
-//        $dados['permissoes'] = $this->db->get('permissoes')->result;
-//        
-//        if($dados == 0){
-//            echo('Permissao Negada');
-//        }else{
-//            echo('Permissao Concedida');
-//        }
-//    }
 
 }

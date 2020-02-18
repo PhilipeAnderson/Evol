@@ -14,7 +14,7 @@
 class PermissaoFuncao {
 
     private $tabela = 'utilizador_permissao';
-    private $pk = 'permissao_id';
+    private $pk = '$idPermissao';
     private $select = 'permissao';
 
 
@@ -27,17 +27,18 @@ class PermissaoFuncao {
     /**
      * Permite verificar se tem acesso a um determinado evento
      *
-     * @param null $permissao_id
+     * @param null $idPermissao
      * @param null $evento
      * @return bool
      */
-    public function checkPermissao($permissao_id = null, $evento = null){
+    
+    public function checkPermissao($idPermissao = null, $evento = null){
 
-        if($permissao_id == null || $evento == null){
+        if($idPermissao == null || $evento == null){
             return false;
         }
 
-        $permissoes = $this->loadPermissao($permissao_id);
+        $permissoes = $this->loadPermissaoFuncao($idPermissao);
 
         /** Se o evento existir no objeto */
         if(property_exists((object)$permissoes, $evento)){
@@ -57,26 +58,26 @@ class PermissaoFuncao {
      * @param null $permissao_id
      * @return bool|mixed
      */
-    private function loadPermissao($permissao_id = null){
-
-        //Se existir permissao_id
-        if($permissao_id){
-
-            $this->CI->db->select($this->select);
-            $this->CI->db->where($this->pk, $permissao_id);
-            $this->CI->db->limit(1);
-            $permissoes = $this->CI->db->get($this->tabela)->row_array();
-
-            if(count($permissoes) > 0){
-
-                return json_decode($permissoes[$this->select]);
-            }
-
-        }
-
-        return false;
-
-    }
+//    private function loadPermissao($idPermissao = null){
+//
+//        //Se existir permissao_id
+//        if($idPermissao){
+//
+//            $this->CI->db->select($this->select);
+//            $this->CI->db->where($this->pk, $idPermissao);
+//            $this->CI->db->limit(1);
+//            $permissoes = $this->CI->db->get($this->tabela)->row_array();
+//
+//            if(count($permissoes) > 0){
+//
+//                return json_decode($permissoes[$this->select]);
+//            }
+//
+//        }
+//
+//        return false;
+//
+//    }
 
 
 }

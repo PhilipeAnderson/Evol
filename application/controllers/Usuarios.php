@@ -20,7 +20,7 @@ class Usuarios extends CI_Controller {
         }
     }
 
-    public function index($indice = null) {
+    public function index() {
         $this->verificar_sessao();
 
         $this->db->select('*');
@@ -29,7 +29,25 @@ class Usuarios extends CI_Controller {
         $this->db->order_by('matriculaUsuario', 'ASC');
         $dados['usuarios'] = $this->db->get('usuarios')->result();
 
+        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsusario') ==7){
         $this->load->view('includes/header');
+        $this->informacoesDeIndice();
+        $this->load->view('usuarios/listar', $dados);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
+        $this->load->view('includes/headerSupervisorGerente');
+        $this->informacoesDeIndice();
+        $this->load->view('usuarios/listar', $dados);
+        $this->load->view('includes/footer');
+        }else{
+        $this->load->view('includes/headerVendedor');
+        $this->informacoesDeIndice();
+        $this->load->view('usuarios/listar', $dados);
+        $this->load->view('includes/footer');
+        }
+    }
+    
+    public function informacoesDeIndice($indice=null){  
         if ($indice == 1) {
             $data['msg'] = "Usuário cadastrado com sucesso!";
             $this->load->view('includes/msg_success', $data);
@@ -55,9 +73,6 @@ class Usuarios extends CI_Controller {
             $data['msg'] = "Não foi possível atualizar a senha!";
             $this->load->view('includes/msg_error', $data);
         }
-
-        $this->load->view('usuarios/listar', $dados);
-        $this->load->view('includes/footer');
     }
 
     public function ordemPorAlfabetica() {
@@ -164,10 +179,23 @@ class Usuarios extends CI_Controller {
 
     public function perfil() {
         $this->verificar_sessao();
-
+        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsusario') ==7){
         $this->load->view('includes/header');
         $this->load->view('usuarios/perfil');
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
+        $this->load->view('includes/headerSupervisorGerente');
+        $this->load->view('usuarios/perfil');
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==8){
+        $this->load->view('includes/headerRecursosHumanos');
+        $this->load->view('usuarios/perfil');
+        $this->load->view('includes/footer');
+        }else{
+        $this->load->view('includes/headerVendedor');
+        $this->load->view('usuarios/perfil');
+        $this->load->view('includes/footer');
+        }
     }
 
     public function excluir($id) {

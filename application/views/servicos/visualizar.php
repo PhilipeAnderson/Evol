@@ -1,5 +1,5 @@
 <!--
- * Criada em:13/02/2020
+ * Criada em:17/02/2020
  *
  * Descricao:
  * Página criada para o conteúdo de Editar da Classe Serviços
@@ -28,7 +28,7 @@
          <div class="col-md-2">
           <div class="form-group">
            <label for="codigoServico" style="color:#ff8379;">Cod. do Serviço:</label>
-           <input style="color:orange; border-color:#5282b2" type="text" id="codigoServico" name="codigoServico" value="<?= $servico[0]->codigoServico ?>" class="form-control" disabled="">
+           <input style="color:orange; border-color:#5282b2" type="text" id="codigoServico" name="codigoServico" value="<?= $servico[0]->codigoServico ?>" class="form-control" disabled>
           </div>
          </div>
         </div>
@@ -37,13 +37,13 @@
          <div class="col-md-3">
           <div class="form-group">
            <label for="nomeServico" style="color:#ff8379;">Serviço:</label>
-           <input style="border-color:#5282b2" type="text" id="nomeServico" name="nomeServico" value="<?= $servico[0]->nomeServico ?>" class="form-control" placeholder="Nome do Serviço" required>
+           <input style="color:orange; border-color:#5282b2" type="text" id="nomeServico" name="nomeServico" value="<?= $servico[0]->nomeServico ?>" class="form-control" placeholder="Nome do Serviço" disabled>
           </div>
          </div>
 
          <div class="col-md-3">
           <label for="categoriaServico" style="color:#ff8379;">Categoria:</label>
-          <select style="border-color:#5282b2" id="categoriaServico" name="categoriaServico" class="form-control">
+          <select style="color:orange; border-color:#5282b2" id="categoriaServico" name="categoriaServico" class="form-control" disabled>
            <option style="background-color:#00dccd; color:#000" value="1" <?= $servico[0]->categoriaServico == 1 ? 'selected' : ''; ?>>Administrativo</option>
            <option style="background-color:#00dccd; color:#000" value="2" <?= $servico[0]->categoriaServico == 2 ? 'selected' : ''; ?>>Jurídico</option>
            <option style="background-color:#00dccd; color:#000" value="3" <?= $servico[0]->categoriaServico == 3 ? 'selected' : ''; ?>>Administrativo/Jurídico</option>
@@ -56,7 +56,7 @@
          <div class="col-md-8">
           <div class="form-group">
            <label for="descricaoServico" style="color:#ff8379;">Descrição:</label>
-           <input style="border-color:#5282b2" type="text" id="descricaoServico" name="descricaoServico" style="color:orange; border-color:#5282b2" value="<?= $servico[0]->descricaoServico ?>" class="form-control" placeholder="Descreva o Serviço" disabled>
+           <input style="color:orange; border-color:#5282b2" type="text" id="descricaoServico" name="descricaoServico" value="<?= $servico[0]->descricaoServico ?>" class="form-control" placeholder="Descreva o Serviço" disabled>
           </div>  
          </div>
         </div>

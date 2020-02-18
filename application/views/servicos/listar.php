@@ -63,6 +63,7 @@
            ?></td>
            <td><?= $ser->descricaoServico; ?></td>
            <td>
+            <a href="<?= base_url('Servicos/visualizar/'.$ser->idServico); ?>" class="btn btn-primary btn-group"><i class="fa fa-eye"></i></a>
             <a href="<?= base_url('Servicos/editar/'.$ser->idServico); ?>" class="btn btn-success btn-group"><i class="fa fa-pen"></i></a>
             <a href="<?= base_url('Servicos/excluir/'.$ser->idServico); ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente EXCLUIR este serviço?')"><i class="fa fa-trash"></i></a>
            </td>

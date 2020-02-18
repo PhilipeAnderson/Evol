@@ -17,66 +17,69 @@ class Servicos extends CI_Controller {
             redirect('Dashboard/login');
         }
     }
-    
-    public function index($indice=null){
+     
+    public function index(){
         $this->verificar_sessao();
         
         $this->db->select('*');
         $dados['servicos'] = $this->db->get('servicos')->result();
         
-        if ($this->session->userdata('nivelUsuario') != 4) {
-            $this->load->view('includes/header');   
-                if($indice==1){
-                $data['msg'] = "Serviço Cadastrado com Sucesso";
-                $this->load->view('includes/msg_success', $data);
-                }elseif($indice==2){
-                    $data['msg'] = "Não foi possível Cadastrar este Serviço!";
-                    $this->load->view('includes/msg_error', $data);   
-                }else if($indice==3){
-                    $data['msg'] = "Serviço Atualizado com Sucesso";
-                    $this->load->view('includes/msg_success', $data);
-                }else if($indice==4){
-                    $data['msg'] = "Não foi possível Atualizar este Serviço!";
-                    $this->load->view('includes/msg_error', $data);   
-                }else if($indice==5){
-                    $data['msg'] = "Serviço Excluido com Sucesso";
-                    $this->load->view('includes/msg_success', $data);
-                }else if($indice==6){
-                    $data['msg'] = "Não foi possível Excluir este Serviço!";
-                    $this->load->view('includes/msg_error', $data);   
-                }
+        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7)  {
+            $this->load->view('includes/header');
+            $this->informacoesDeIndice();
             $this->load->view('servicos/listar', $dados);
             $this->load->view('includes/footer');
-            
+        } else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3 ) {
+            $this->load->view('includes/headerSupervisorGerente');
+            $this->informacoesDeIndice();
+            $this->load->view('servicos/listarVendas', $dados);
+            $this->load->view('includes/footer'); 
+        }else{
+           $this->load->view('includes/headerVendedor');
+           $this->informacoesDeIndice();
+           $this->load->view('servicos/listarVendas', $dados);
+           $this->load->view('includes/footer'); 
+        }
+    }
+    
+    
+    public function informacoesDeIndice($indice=null){  
+        if($indice==1){
+        $data['msg'] = "Serviço Cadastrado com Sucesso";
+        $this->load->view('includes/msg_success', $data);
+        }elseif($indice==2){
+            $data['msg'] = "Não foi possível Cadastrar este Serviço!";
+            $this->load->view('includes/msg_error', $data);   
+        }else if($indice==3){
+            $data['msg'] = "Serviço Atualizado com Sucesso";
+            $this->load->view('includes/msg_success', $data);
+        }else if($indice==4){
+            $data['msg'] = "Não foi possível Atualizar este Serviço!";
+            $this->load->view('includes/msg_error', $data);   
+        }else if($indice==5){
+            $data['msg'] = "Serviço Excluido com Sucesso";
+            $this->load->view('includes/msg_success', $data);
+        }else if($indice==6){
+            $data['msg'] = "Não foi possível Excluir este Serviço!";
+            $this->load->view('includes/msg_error', $data);   
+        }
+    }
+    
+    public function visualizar($id = null) {
+        $this->verificar_sessao();
+
+        $this->db->where('idServico', $id);
+        $data['servico'] = $this->db->get('servicos')->result();
+        
+        if ($this->session->userdata('nivelUsuario') != 4) {
+            $this->load->view('includes/header');
+            $this->load->view('servicos/visualizar' , $data);
+            $this->load->view('includes/footer');
         } else {
             $this->load->view('includes/headerVendedor');
-                if($indice==1){
-                $data['msg'] = "Serviço Cadastrado com Sucesso";
-                $this->load->view('includes/msg_success', $data);
-                }elseif($indice==2){
-                    $data['msg'] = "Não foi possível Cadastrar este Serviço!";
-                    $this->load->view('includes/msg_error', $data);   
-                }else if($indice==3){
-                    $data['msg'] = "Serviço Atualizado com Sucesso";
-                    $this->load->view('includes/msg_success', $data);
-                }else if($indice==4){
-                    $data['msg'] = "Não foi possível Atualizar este Serviço!";
-                    $this->load->view('includes/msg_error', $data);   
-                }else if($indice==5){
-                    $data['msg'] = "Serviço Excluido com Sucesso";
-                    $this->load->view('includes/msg_success', $data);
-                }else if($indice==6){
-                    $data['msg'] = "Não foi possível Excluir este Serviço!";
-                    $this->load->view('includes/msg_error', $data);   
-                }
-            $this->load->view('servicos/listarVendedor', $dados);
-            $this->load->view('includes/footer'); 
+            $this->load->view('clientes/visualizar' , $data);
+            $this->load->view('includes/footer');
         }
-        
-        
-        
-        
-    
     }
     
     public function ordemPorCategoria(){
@@ -143,8 +146,6 @@ class Servicos extends CI_Controller {
         } 
     }
     
-    
-    
     public function excluir($id = null){
         $this->verificar_sessao();
         
@@ -156,3 +157,60 @@ class Servicos extends CI_Controller {
         }
     }  
 }
+
+
+//        public function index($indice=null){
+//        $this->verificar_sessao();
+//        
+//        $this->db->select('*');
+//        $dados['servicos'] = $this->db->get('servicos')->result();
+//        
+//        if ($this->session->userdata('nivelUsuario') != 4) {
+//            $this->load->view('includes/header');   
+//                if($indice==1){
+//                $data['msg'] = "Serviço Cadastrado com Sucesso";
+//                $this->load->view('includes/msg_success', $data);
+//                }elseif($indice==2){
+//                    $data['msg'] = "Não foi possível Cadastrar este Serviço!";
+//                    $this->load->view('includes/msg_error', $data);   
+//                }else if($indice==3){
+//                    $data['msg'] = "Serviço Atualizado com Sucesso";
+//                    $this->load->view('includes/msg_success', $data);
+//                }else if($indice==4){
+//                    $data['msg'] = "Não foi possível Atualizar este Serviço!";
+//                    $this->load->view('includes/msg_error', $data);   
+//                }else if($indice==5){
+//                    $data['msg'] = "Serviço Excluido com Sucesso";
+//                    $this->load->view('includes/msg_success', $data);
+//                }else if($indice==6){
+//                    $data['msg'] = "Não foi possível Excluir este Serviço!";
+//                    $this->load->view('includes/msg_error', $data);   
+//                }
+//            $this->load->view('servicos/listar', $dados);
+//            $this->load->view('includes/footer');
+//            
+//        } else {
+//            $this->load->view('includes/headerVendedor');
+//                if($indice==1){
+//                $data['msg'] = "Serviço Cadastrado com Sucesso";
+//                $this->load->view('includes/msg_success', $data);
+//                }elseif($indice==2){
+//                    $data['msg'] = "Não foi possível Cadastrar este Serviço!";
+//                    $this->load->view('includes/msg_error', $data);   
+//                }else if($indice==3){
+//                    $data['msg'] = "Serviço Atualizado com Sucesso";
+//                    $this->load->view('includes/msg_success', $data);
+//                }else if($indice==4){
+//                    $data['msg'] = "Não foi possível Atualizar este Serviço!";
+//                    $this->load->view('includes/msg_error', $data);   
+//                }else if($indice==5){
+//                    $data['msg'] = "Serviço Excluido com Sucesso";
+//                    $this->load->view('includes/msg_success', $data);
+//                }else if($indice==6){
+//                    $data['msg'] = "Não foi possível Excluir este Serviço!";
+//                    $this->load->view('includes/msg_error', $data);   
+//                }
+//            $this->load->view('servicos/listarVendedor', $dados);
+//            $this->load->view('includes/footer'); 
+//        }
+//    }

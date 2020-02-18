@@ -46,9 +46,9 @@
                       }else if($this->session->userdata('nivelUsuario') == 6){
                           echo "Técnico";
                       }else if($this->session->userdata('nivelUsuario') == 7){
-                          echo "Estagiário Vendas";
+                          echo "Sistema TI";
                       }else if($this->session->userdata('nivelUsuario') == 8){
-                          echo "Estagiário Técnico";
+                          echo "Analista de RH";
                       }else{    
                           echo " Pendente em Permissoes";
                       }

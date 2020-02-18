@@ -20,118 +20,84 @@ class Clientes extends CI_Controller {
         }
     }
 
-    public function index($indice = null) {
+    public function index() {
         $this->verificar_sessao();
-
-        if ($this->session->userdata('nivelUsuario') != 4 && $this->session->userdata('nivelUsuario') != 3) {
-
+        
+        if($this->session->userdata('nivelUsuario') ==1 && $this->session->userdata('nivelUsuario') ==7){
             $this->db->select('*');
             $dados['clientes'] = $this->db->get('clientes')->result();
-
             $this->load->view('includes/header');
-            if ($indice == 1) {
-                $data['msg'] = "Cliente cadastrado com sucesso! Parabéns a meta é certa!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 2) {
-                $data['msg'] = "Erro ao cadastrar o cliente no Banco de Dados! Comunique ao seu gerente";
-                $this->load->view('includes/msg_error', $data);
-            } else if ($indice == 3) {
-                $data['msg'] = "Cliente EDITADO com sucesso! Os Dados atualizados aglizam o processo da empresa. Parabéns!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 4) {
-                $data['msg'] = "Não foi possível EDITAR este cliente! Contate a equipe de T.I.";
-                $this->load->view('includes/msg_error', $data);
-            } else if ($indice == 5) {
-                $data['msg'] = "Cliente EXCLUÍDO com sucesso!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 6) {
-                $data['msg'] = "Não foi possível excluir este cliente! Contate a equipe de T.I.";
-                $this->load->view('includes/msg_error', $data);
-            }
+            $this->informacoesDeIndice();
             $this->load->view('clientes/listar', $dados);
             $this->load->view('includes/footer');
-        
-            
-        }else if ($this->session->userdata('nivelUsuario') == 4) {
-
+        }else if($this->session->userdata('nivelUsuario') ==2){
+            $this->db->select('*');
+            $dados['clientes'] = $this->db->get('clientes')->result();
+            $this->load->view('includes/headerSupervisorGerente');
+            $this->informacoesDeIndice();
+            $this->load->view('clientes/listar', $dados);
+            $this->load->view('includes/footer');
+        }else if ($this->session->userdata('nivelUsuario') ==4) {
             $this->db->select('*');
             $this->db->where('matricula', $this->session->userdata('matricula'));
             $this->db->where('filial', $this->session->userdata('filialUsuario'));
             $dados['clientes'] = $this->db->get('clientes')->result();
-
-
             $this->load->view('includes/headerVendedor');
-            if ($indice == 1) {
-                $data['msg'] = "Cliente cadastrado com sucesso! Parabéns a meta é certa!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 2) {
-                $data['msg'] = "Erro ao cadastrar o cliente no Banco de Dados! Comunique ao seu gerente";
-                $this->load->view('includes/msg_error', $data);
-            } else if ($indice == 3) {
-                $data['msg'] = "Cliente EDITADO com sucesso! Os Dados atualizados aglizam o processo da empresa. Parabéns!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 4) {
-                $data['msg'] = "Não foi possível EDITAR este cliente! Contate a equipe de T.I.";
-                $this->load->view('includes/msg_error', $data);
-            } else if ($indice == 5) {
-                $data['msg'] = "Cliente EXCLUÍDO com sucesso!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 6) {
-                $data['msg'] = "Não foi possível excluir este cliente! Contate a equipe de T.I.";
-                $this->load->view('includes/msg_error', $data);
-            }
+            $this->informacoesDeIndice();
             $this->load->view('clientes/listarVendedor', $dados);
             $this->load->view('includes/footer');
-            
-        } else if ($this->session->userdata('nivelUsuario') == 3) {
-            
+        }else if ($this->session->userdata('nivelUsuario') ==3) {
             $this->db->select('*');
             $this->db->where('filial', $this->session->userdata('filialUsuario'));
             $dados['clientes'] = $this->db->get('clientes')->result();
-
-            $this->load->view('includes/header');
-            if ($indice == 1) {
-                $data['msg'] = "Cliente cadastrado com sucesso! Parabéns a meta é certa!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 2) {
-                $data['msg'] = "Erro ao cadastrar o cliente no Banco de Dados! Comunique ao seu gerente";
-                $this->load->view('includes/msg_error', $data);
-            } else if ($indice == 3) {
-                $data['msg'] = "Cliente EDITADO com sucesso! Os Dados atualizados aglizam o processo da empresa. Parabéns!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 4) {
-                $data['msg'] = "Não foi possível EDITAR este cliente! Contate a equipe de T.I.";
-                $this->load->view('includes/msg_error', $data);
-            } else if ($indice == 5) {
-                $data['msg'] = "Cliente EXCLUÍDO com sucesso!";
-                $this->load->view('includes/msg_success', $data);
-            } else if ($indice == 6) {
-                $data['msg'] = "Não foi possível excluir este cliente! Contate a equipe de T.I.";
-                $this->load->view('includes/msg_error', $data);
-            }
-            $this->load->view('clientes/listar', $dados);
+            $this->load->view('includes/headerSupervisorGerente');
+            $this->informacoesDeIndice();
+            $this->load->view('clientes/listarGerente', $dados);
             $this->load->view('includes/footer');
         }
     }
     
-
+    public function informacoesDeIndice($indice=null){  
+        if ($indice == 1) {
+                $data['msg'] = "Cliente cadastrado com sucesso! Parabéns a meta é certa!";
+                $this->load->view('includes/msg_success', $data);
+        } else if ($indice == 2) {
+            $data['msg'] = "Erro ao cadastrar o cliente no Banco de Dados! Comunique ao seu gerente";
+            $this->load->view('includes/msg_error', $data);
+        } else if ($indice == 3) {
+            $data['msg'] = "Cliente EDITADO com sucesso! Os Dados atualizados aglizam o processo da empresa. Parabéns!";
+            $this->load->view('includes/msg_success', $data);
+        } else if ($indice == 4) {
+            $data['msg'] = "Não foi possível EDITAR este cliente! Contate a equipe de T.I.";
+            $this->load->view('includes/msg_error', $data);
+        } else if ($indice == 5) {
+            $data['msg'] = "Cliente EXCLUÍDO com sucesso!";
+            $this->load->view('includes/msg_success', $data);
+        } else if ($indice == 6) {
+            $data['msg'] = "Não foi possível excluir este cliente! Contate a equipe de T.I.";
+            $this->load->view('includes/msg_error', $data);
+        }
+    }
+    
     public function visualizar($id = null) {
         $this->verificar_sessao();
 
         $this->db->where('idCliente', $id);
         $data['cliente'] = $this->db->get('clientes')->result();
-        if ($this->session->userdata('nivelUsuario') != 4) {
-            $this->load->view('includes/header');
-            $this->load->view('clientes/visualizar' , $data);
-            $this->load->view('includes/footer');
-        } else {
-            $this->load->view('includes/headerVendedor');
-            $this->load->view('clientes/visualizar' , $data);
-            $this->load->view('includes/footer');
+        
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
+        $this->load->view('includes/header');
+        $this->load->view('clientes/visualizar' , $data);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
+        $this->load->view('includes/headerSupervisorGerente');
+        $this->load->view('clientes/visualizar' , $data);
+        $this->load->view('includes/footer');
+        }else {
+        $this->load->view('includes/headerVendedor');
+        $this->load->view('clientes/visualizar' , $data);
+        $this->load->view('includes/footer');
         }
-//        $this->load->view('includes/header');
-//        $this->load->view('clientes/visualizar', $data);
-//        $this->load->view('includes/footer');
     }
 
     public function ordemPorAlfabetica() {
@@ -140,37 +106,37 @@ class Clientes extends CI_Controller {
         $this->db->order_by('razaoSocial', 'name');
         $dados['clientes'] = $this->db->get('clientes')->result();
         
-        if ($this->session->userdata('nivelUsuario') != 4) {
-            $this->load->view('includes/header');
-            $this->load->view('clientes/listar' , $dados);
-            $this->load->view('includes/footer');
-        } else {
-            $this->load->view('includes/headerVendedor');
-            $this->load->view('clientes/listar' , $dados);
-            $this->load->view('includes/footer');
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
+        $this->load->view('includes/header');
+        $this->load->view('clientes/listar' , $dados);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
+        $this->load->view('includes/headerSupervisorGerente');
+        $this->load->view('clientes/listar' , $dados);
+        $this->load->view('includes/footer');
+        }else {
+        $this->load->view('includes/headerVendedor');
+        $this->load->view('clientes/listar' , $dados);
+        $this->load->view('includes/footer');
         }
-
-//        $this->load->view('includes/header');
-//        $this->load->view('clientes/listar', $dados);
-//        $this->load->view('includes/footer');
     }
 
     public function cadastrar() {
         $this->verificar_sessao();
         
-        if ($this->session->userdata('nivelUsuario') != 4) {
-            $this->load->view('includes/header');
-            $this->load->view('clientes/cadastrar');
-            $this->load->view('includes/footer');
-        } else {
-            $this->load->view('includes/headerVendedor');
-            $this->load->view('clientes/cadastrar');
-            $this->load->view('includes/footer');
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
+        $this->load->view('includes/header');
+        $this->load->view('clientes/cadastrar');
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
+        $this->load->view('includes/headerSupervisorGerente');
+        $this->load->view('clientes/cadastrar');
+        $this->load->view('includes/footer');
+        }else{
+        $this->load->view('includes/headerVendedor');
+        $this->load->view('clientes/cadastrar');
+        $this->load->view('includes/footer');
         }
-
-//        $this->load->view('includes/header');
-//        $this->load->view('clientes/cadastrar');
-//        $this->load->view('includes/footer');
     }
 
     public function cadastrando() {
@@ -208,9 +174,20 @@ class Clientes extends CI_Controller {
 
         $this->db->where('idCliente', $id);
         $data['cliente'] = $this->db->get('clientes')->result();
+        
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
         $this->load->view('includes/header');
-        $this->load->view('clientes/editar', $data);
+        $this->load->view('clientes/editar' , $data);
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
+        $this->load->view('includes/headerSupervisorGerente');
+        $this->load->view('clientes/editar' , $data);
+        $this->load->view('includes/footer');
+        }else {
+        $this->load->view('includes/headerVendedor');
+        $this->load->view('clientes/editar' , $data);
+        $this->load->view('includes/footer');
+        }
     }
 
     public function editando() {
@@ -255,5 +232,4 @@ class Clientes extends CI_Controller {
             redirect('Clientes/6');
         }
     }
-
 }
