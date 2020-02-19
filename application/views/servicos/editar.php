@@ -56,7 +56,7 @@
          <div class="col-md-8">
           <div class="form-group">
            <label for="descricaoServico" style="color:#ff8379;">Descrição:</label>
-           <input style="border-color:#5282b2" type="text" id="descricaoServico" name="descricaoServico" style="color:orange; border-color:#5282b2" value="<?= $servico[0]->descricaoServico ?>" class="form-control" placeholder="Descreva o Serviço" disabled>
+           <input style="border-color:#5282b2" type="text" id="descricaoServico" name="descricaoServico" style="color:orange; border-color:#5282b2" value="<?= $servico[0]->descricaoServico ?>" class="form-control" placeholder="Descreva o Serviço">
           </div>  
          </div>
         </div>

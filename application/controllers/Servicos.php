@@ -24,24 +24,33 @@ class Servicos extends CI_Controller {
         $this->db->select('*');
         $dados['servicos'] = $this->db->get('servicos')->result();
         
-        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7)  {
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7)  {
             $this->load->view('includes/header');
             $this->informacoesDeIndice();
             $this->load->view('servicos/listar', $dados);
             $this->load->view('includes/footer');
-        } else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3 ) {
+        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3) {
             $this->load->view('includes/headerSupervisorGerente');
             $this->informacoesDeIndice();
             $this->load->view('servicos/listarVendas', $dados);
             $this->load->view('includes/footer'); 
-        }else{
-           $this->load->view('includes/headerVendedor');
+        }else if($this->session->userdata('nivelUsuario') ==4 ) {
+            $this->load->view('includes/headerVendedor');
+            $this->informacoesDeIndice();
+            $this->load->view('servicos/listarVendas', $dados);
+            $this->load->view('includes/footer'); 
+        }else if($this->session->userdata('nivelUsuario') ==5){
+           $this->load->view('includes/headerCoordenadorTecnico');
            $this->informacoesDeIndice();
-           $this->load->view('servicos/listarVendas', $dados);
+           $this->load->view('servicos/listarCoordenador', $dados);
+           $this->load->view('includes/footer'); 
+        }else if($this->session->userdata('nivelUsuario') ==6){
+           $this->load->view('includes/headerCoordenadorTecnico');
+           $this->informacoesDeIndice();
+           $this->load->view('servicos/listarTecnico', $dados);
            $this->load->view('includes/footer'); 
         }
-    }
-    
+    }    
     
     public function informacoesDeIndice($indice=null){  
         if($indice==1){
@@ -71,14 +80,18 @@ class Servicos extends CI_Controller {
         $this->db->where('idServico', $id);
         $data['servico'] = $this->db->get('servicos')->result();
         
-        if ($this->session->userdata('nivelUsuario') != 4) {
-            $this->load->view('includes/header');
-            $this->load->view('servicos/visualizar' , $data);
-            $this->load->view('includes/footer');
-        } else {
-            $this->load->view('includes/headerVendedor');
-            $this->load->view('clientes/visualizar' , $data);
-            $this->load->view('includes/footer');
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
+        $this->load->view('includes/header');
+        $this->load->view('servicos/visualizar', $data);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') == 5){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('servicos/visualizar', $data);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('servicos/visualizar', $data);
+        $this->load->view('includes/footer');
         }
     }
     
@@ -96,11 +109,19 @@ class Servicos extends CI_Controller {
     
     public function cadastrar(){
         $this->verificar_sessao();
-        
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
         $this->load->view('includes/header');
         $this->load->view('servicos/cadastrar');
         $this->load->view('includes/footer');
-        
+        }else if($this->session->userdata('nivelUsuario') == 5){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('servicos/cadastrar');
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('servicos/cadastrar');
+        $this->load->view('includes/footer');
+        }
     }
     
     
@@ -124,9 +145,21 @@ class Servicos extends CI_Controller {
         
         $this->db->where('idServico', $id);
         $data['servico'] = $this->db->get('servicos')->result();
+        
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
         $this->load->view('includes/header');
         $this->load->view('servicos/editar', $data);
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') == 5){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('servicos/editar', $data);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('servicos/editar', $data);
+        $this->load->view('includes/footer');
+        }
+        
     }
     
     public function editando() {

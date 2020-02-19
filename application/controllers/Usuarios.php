@@ -179,7 +179,7 @@ class Usuarios extends CI_Controller {
 
     public function perfil() {
         $this->verificar_sessao();
-        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsusario') ==7){
+        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
         $this->load->view('includes/header');
         $this->load->view('usuarios/perfil');
         $this->load->view('includes/footer');
@@ -187,6 +187,10 @@ class Usuarios extends CI_Controller {
         $this->load->view('includes/headerSupervisorGerente');
         $this->load->view('usuarios/perfil');
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==5 || $this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('usuarios/perfil');
+        $this->load->view('includes/footer');       
         }else if($this->session->userdata('nivelUsuario') ==8){
         $this->load->view('includes/headerRecursosHumanos');
         $this->load->view('usuarios/perfil');

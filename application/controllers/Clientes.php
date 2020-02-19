@@ -23,7 +23,7 @@ class Clientes extends CI_Controller {
     public function index() {
         $this->verificar_sessao();
         
-        if($this->session->userdata('nivelUsuario') ==1 && $this->session->userdata('nivelUsuario') ==7){
+        if($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
             $this->db->select('*');
             $dados['clientes'] = $this->db->get('clientes')->result();
             $this->load->view('includes/header');
@@ -37,6 +37,13 @@ class Clientes extends CI_Controller {
             $this->informacoesDeIndice();
             $this->load->view('clientes/listar', $dados);
             $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==5){
+            $this->db->select('*');
+            $dados['clientes'] = $this->db->get('clientes')->result();
+            $this->load->view('includes/headerCoordenadorTecnico');
+            $this->informacoesDeIndice();
+            $this->load->view('clientes/listarCoordenador', $dados);
+            $this->load->view('includes/footer');
         }else if ($this->session->userdata('nivelUsuario') ==4) {
             $this->db->select('*');
             $this->db->where('matricula', $this->session->userdata('matricula'));
@@ -46,6 +53,15 @@ class Clientes extends CI_Controller {
             $this->informacoesDeIndice();
             $this->load->view('clientes/listarVendedor', $dados);
             $this->load->view('includes/footer');
+            
+        }else if ($this->session->userdata('nivelUsuario') ==6) {
+            $this->db->select('*');
+            $dados['clientes'] = $this->db->get('clientes')->result();
+            $this->load->view('includes/headerCoordenadorTecnico');
+            $this->informacoesDeIndice();
+            $this->load->view('clientes/listarTecnico', $dados);
+            $this->load->view('includes/footer');
+            
         }else if ($this->session->userdata('nivelUsuario') ==3) {
             $this->db->select('*');
             $this->db->where('filial', $this->session->userdata('filialUsuario'));
@@ -93,6 +109,10 @@ class Clientes extends CI_Controller {
         $this->load->view('includes/headerSupervisorGerente');
         $this->load->view('clientes/visualizar' , $data);
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==5 || $this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('clientes/visualizar', $data);
+        $this->load->view('includes/footer');
         }else {
         $this->load->view('includes/headerVendedor');
         $this->load->view('clientes/visualizar' , $data);
@@ -114,6 +134,10 @@ class Clientes extends CI_Controller {
         $this->load->view('includes/headerSupervisorGerente');
         $this->load->view('clientes/listar' , $dados);
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==5 || $this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('clientes/listar', $dados);
+        $this->load->view('includes/footer');
         }else {
         $this->load->view('includes/headerVendedor');
         $this->load->view('clientes/listar' , $dados);
@@ -132,6 +156,10 @@ class Clientes extends CI_Controller {
         $this->load->view('includes/headerSupervisorGerente');
         $this->load->view('clientes/cadastrar');
         $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==5 || $this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('clientes/cadastrar');
+        $this->load->view('includes/footer'); 
         }else{
         $this->load->view('includes/headerVendedor');
         $this->load->view('clientes/cadastrar');
@@ -182,6 +210,10 @@ class Clientes extends CI_Controller {
         }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
         $this->load->view('includes/headerSupervisorGerente');
         $this->load->view('clientes/editar' , $data);
+        $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') ==5 || $this->session->userdata('nivelUsuario') ==6){
+        $this->load->view('includes/headerCoordenadorTecnico');
+        $this->load->view('clientes/editar', $data);
         $this->load->view('includes/footer');
         }else {
         $this->load->view('includes/headerVendedor');
