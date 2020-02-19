@@ -128,31 +128,33 @@
         <div class="container">
           <div class="col-lg-4 col-md-6 ml-auto mr-auto">
            <form class="form" action="<?= base_url('Dashboard/logar') ?>" method="post">
-              <div class="card card-login card-white">
-                <div class="card-header">
-                 <img src="<?= base_url() ?>/assets/img/backLogin.png" alt="">
+              <!--<div class="card card-login card-white">-->
+<!--                <div class="card-header">
+                 <img src="<!?= base_url() ?>/assets/img/backLogin.png" alt="">
                   <h1 class="card-title"></h1>
-                </div><br><br><br>
+                </div><br><br><br>-->
                 <div class="card-body">
+                    <h2 style="color:#fff; text-align: center">Galagas Login !</h2>
+                    <small style="text-align:center;">&nbsp;ATENÇÃO! &nbsp;&nbsp;&nbsp;&nbsp;->&nbsp;&nbsp;&nbsp;&nbsp;Nunca compartilhe suas senhas!</small>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <div style="border-color:#5282b2; background-color:rgba(255,255,255,0.8)" class="input-group-text">
-                        <i class="fal fa-play-circle"></i>
+                      <div style="margin-right: 7px; border-color:#5282b2; background-color:rgba(255,255,255,0.8)" class="input-group-text">
+                        <i style="margin-right :20px; color:#000" class="fa fa-play-circle"></i>
                       </div>
                     </div>
-                   <input style="border-color:#5282b2; background-color:rgba(255,255,255,0.8)" type="text" name="loginUsuario" id="loginUsuario" class="form-control" placeholder="Email de Login" required="">
+                   <input style="border-color:#5282b2; background-color:transparent" type="text" name="loginUsuario" id="loginUsuario" class="form-control" placeholder="Email de Login" required="">
                   </div>
-                  <div class="input-group">
+                  <div style="text-align:center" class="input-group">
                     <div class="input-group-prepend">
-                      <div style="border-color:#5282b2; background-color:rgba(255,255,255,0.8)" class="input-group-text">
-                        <i class="fal fa-key"></i>
+                      <div style="margin-right: 7px; border-color:#5282b2; background-color:rgba(255,255,255,0.8);" class="input-group-text">
+                        <i style="margin-right :20px; color:#000" class="fa fa-key"></i>
                       </div>
                     </div>
-                   <input style="border-color:#5282b2; background-color:rgba(255,255,255,0.8)" type="password" name="senhaUsuario" id="senhaUsuario" class="form-control" placeholder="Sua Senha" required="">
+                   <input style="border-color:#5282b2; background-color:transparent" type="password" name="senhaUsuario" id="senhaUsuario" class="form-control" placeholder="Sua Senha" required="">
                   </div>
                  <button type="submit" name="logar" id="logar" class="btn btn-primary btn-lg btn-block mb-3">Vamos Começar :)</button>
                 </div>
-              </div>
+              <!--</div>-->
             </form>
           </div>
         </div>
