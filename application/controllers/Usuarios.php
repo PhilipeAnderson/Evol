@@ -11,7 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author Philipe Anderson De Campos | philipe@phillinks.com.br
  * @copyright (c) 2020, Philipe Anderson | phillinks.com.br
  */
-
 class Usuarios extends CI_Controller {
 
     public function verificar_sessao() {
@@ -29,25 +28,30 @@ class Usuarios extends CI_Controller {
         $this->db->order_by('matriculaUsuario', 'ASC');
         $dados['usuarios'] = $this->db->get('usuarios')->result();
 
-        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsusario') ==7){
-        $this->load->view('includes/header');
-        $this->informacoesDeIndice();
-        $this->load->view('usuarios/listar', $dados);
-        $this->load->view('includes/footer');
-        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
-        $this->load->view('includes/headerSupervisorGerente');
-        $this->informacoesDeIndice();
-        $this->load->view('usuarios/listar', $dados);
-        $this->load->view('includes/footer');
-        }else{
-        $this->load->view('includes/headerVendedor');
-        $this->informacoesDeIndice();
-        $this->load->view('usuarios/listar', $dados);
-        $this->load->view('includes/footer');
+        if ($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsusario') == 7) {
+            $this->load->view('includes/header');
+            $this->informacoesDeIndice();
+            $this->load->view('usuarios/listar', $dados);
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 2 || $this->session->userdata('nivelUsuario') == 3) {
+            $this->load->view('includes/headerSupervisorGerente');
+            $this->informacoesDeIndice();
+            $this->load->view('usuarios/listar', $dados);
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 8) {
+            $this->load->view('includes/headerRecursosHumanos');
+            $this->informacoesDeIndice();
+            $this->load->view('usuarios/listar', $dados);
+            $this->load->view('includes/footer');
+        } else {
+            $this->load->view('includes/headerVendedor');
+            $this->informacoesDeIndice();
+            $this->load->view('usuarios/listar', $dados);
+            $this->load->view('includes/footer');
         }
     }
-    
-    public function informacoesDeIndice($indice=null){  
+
+    public function informacoesDeIndice($indice = null) {
         if ($indice == 1) {
             $data['msg'] = "Usuário cadastrado com sucesso!";
             $this->load->view('includes/msg_success', $data);
@@ -102,13 +106,21 @@ class Usuarios extends CI_Controller {
 
     public function cadastrar() {
         $this->verificar_sessao();
-        
+
         $dados['filial'] = $this->db->get('filiais')->result();
         $dados['funcao'] = $this->db->get('permissoes')->result();
 
-        $this->load->view('includes/header');
-        $this->load->view('usuarios/cadastrar', $dados);
-        $this->load->view('includes/footer');
+
+        if ($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7) {
+            $this->load->view('includes/header');
+            $this->load->view('usuarios/cadastrar', $dados);
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 8) {
+            $this->load->view('includes/headerRecursosHumanos');
+            $this->informacoesDeIndice();
+            $this->load->view('usuarios/cadastrar', $dados);
+            $this->load->view('includes/footer');
+        }
     }
 
     public function cadastrando() {
@@ -139,15 +151,27 @@ class Usuarios extends CI_Controller {
         $data['funcao'] = $this->db->get('permissoes')->result();
 
         $this->db->where('idUsuario', $id);
-
-        $data['usuario'] = $this->db->get('usuarios')->result();
-        $this->load->view('includes/header');
-        if ($indice == 1) {
-            $data['msg'] = "Senha alterada com sucesso!";
-            $this->load->view('includes/msg_success', $data);
-        } else if ($indice == 2) {
-            $data['msg'] = "Erro ao alterar a Senha no Banco de Dados! Comunique ao seu gerente";
-            $this->load->view('includes/msg_error', $data);
+        
+        if($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7){
+            $data['usuario'] = $this->db->get('usuarios')->result();
+            $this->load->view('includes/header');
+            if ($indice == 1) {
+                $data['msg'] = "Senha alterada com sucesso!";
+                $this->load->view('includes/msg_success', $data);
+            } else if ($indice == 2) {
+                $data['msg'] = "Erro ao alterar a Senha no Banco de Dados! Comunique ao seu gerente";
+                $this->load->view('includes/msg_error', $data);
+            }
+        } else if ($this->session->userdata('nivelUsuario') == 8) {
+            $data['usuario'] = $this->db->get('usuarios')->result();
+            $this->load->view('includes/headerRecursosHumanos');
+            if ($indice == 1) {
+                $data['msg'] = "Senha alterada com sucesso!";
+                $this->load->view('includes/msg_success', $data);
+            } else if ($indice == 2) {
+                $data['msg'] = "Erro ao alterar a Senha no Banco de Dados! Comunique ao seu gerente";
+                $this->load->view('includes/msg_error', $data);
+            }
         }
 
         $this->load->view('usuarios/editar', $data);
@@ -179,26 +203,26 @@ class Usuarios extends CI_Controller {
 
     public function perfil() {
         $this->verificar_sessao();
-        if ($this->session->userdata('nivelUsuario') ==1 || $this->session->userdata('nivelUsuario') ==7){
-        $this->load->view('includes/header');
-        $this->load->view('usuarios/perfil');
-        $this->load->view('includes/footer');
-        }else if($this->session->userdata('nivelUsuario') ==2 || $this->session->userdata('nivelUsuario') ==3){
-        $this->load->view('includes/headerSupervisorGerente');
-        $this->load->view('usuarios/perfil');
-        $this->load->view('includes/footer');
-        }else if($this->session->userdata('nivelUsuario') ==5 || $this->session->userdata('nivelUsuario') ==6){
-        $this->load->view('includes/headerCoordenadorTecnico');
-        $this->load->view('usuarios/perfil');
-        $this->load->view('includes/footer');       
-        }else if($this->session->userdata('nivelUsuario') ==8){
-        $this->load->view('includes/headerRecursosHumanos');
-        $this->load->view('usuarios/perfil');
-        $this->load->view('includes/footer');
-        }else{
-        $this->load->view('includes/headerVendedor');
-        $this->load->view('usuarios/perfil');
-        $this->load->view('includes/footer');
+        if ($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7) {
+            $this->load->view('includes/header');
+            $this->load->view('usuarios/perfil');
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 2 || $this->session->userdata('nivelUsuario') == 3) {
+            $this->load->view('includes/headerSupervisorGerente');
+            $this->load->view('usuarios/perfil');
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 5 || $this->session->userdata('nivelUsuario') == 6) {
+            $this->load->view('includes/headerCoordenadorTecnico');
+            $this->load->view('usuarios/perfil');
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 8) {
+            $this->load->view('includes/headerRecursosHumanos');
+            $this->load->view('usuarios/perfil');
+            $this->load->view('includes/footer');
+        } else {
+            $this->load->view('includes/headerVendedor');
+            $this->load->view('usuarios/perfil');
+            $this->load->view('includes/footer');
         }
     }
 

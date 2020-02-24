@@ -26,8 +26,8 @@ class Filiais extends CI_Controller {
         $this->db->select('*');
         $dados['filial'] = $this->db->get('filiais')->result();
         
-        if ($this->session->userdata('nivelUsusario') !=8 ){
-        $this->load->view('includes/header');
+        if ($this->session->userdata('nivelUsuario') == 8 ){
+        $this->load->view('includes/headerRecursosHumanos');
         if ($indice == 1) {
             $data['msg'] = "Filial cadastrada com sucesso!";
             $this->load->view('includes/msg_success', $data);
@@ -50,7 +50,7 @@ class Filiais extends CI_Controller {
         $this->load->view('Filiais/listar', $dados);
         $this->load->view('includes/footer');
     }else{
-        $this->load->view('includes/headerRecursosHumanos');
+        $this->load->view('includes/header');
         if ($indice == 1) {
             $data['msg'] = "Filial cadastrada com sucesso!";
             $this->load->view('includes/msg_success', $data);
@@ -77,20 +77,25 @@ class Filiais extends CI_Controller {
 
     public function cadastrar() {
         $this->verificar_sessao();
-
-        $this->load->view('includes/header');
-        $this->load->view('filiais/cadastrar');
-        $this->load->view('includes/footer');
+        if ($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7) {
+            $this->load->view('includes/header');
+            $this->load->view('filiais/cadastrar');
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 8){
+            $this->load->view('includes/headerRecursosHumanos');
+            $this->load->view('filiais/cadastrar');
+            $this->load->view('includes/footer');
+        }
+        
     }
 
     public function visualizar($id = null) {
         $this->verificar_sessao();
-
         $this->db->where('idFilial', $id);
         $data['filial'] = $this->db->get('filiais')->result();
         $this->load->view('includes/header');
         $this->load->view('filiais/visualizar', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('includes/footer');        
     }
 
     public function cadastrando() {
@@ -109,12 +114,18 @@ class Filiais extends CI_Controller {
 
     public function editar($id = null) {
         $this->verificar_sessao();
-
         $this->db->where('idFilial', $id);
-        $data['filial'] = $this->db->get('filiais')->result();
-        $this->load->view('includes/header');
-        $this->load->view('filiais/editar', $data);
-        $this->load->view('includes/footer');
+            $data['filial'] = $this->db->get('filiais')->result();
+        if($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7){
+            $this->load->view('includes/header');
+            $this->load->view('filiais/editar', $data);
+            $this->load->view('includes/footer');
+        }else if($this->session->userdata('nivelUsuario') == 8){
+            $this->load->view('includes/headerRecursosHumanos');
+            $this->load->view('filiais/editar', $data);
+            $this->load->view('includes/footer');
+        }
+        
     }
 
     public function editando() {

@@ -36,35 +36,54 @@ class Permissoes extends CI_Controller {
         $this->verificar_sessao();
 
         $dados['permissoes'] = $this->db->get('permissoes')->result();
-
-        $this->load->view("includes/header");
-
-        if ($indice == 1) {
-            $data['msg'] = "Função cadastrada com sucesso!";
-            $this->load->view('includes/msg_success', $data);
-        } else if ($indice == 2) {
-            $data['msg'] = "Erro ao cadastrar a nova função no Banco de Dados!";
-            $this->load->view('includes/msg_error', $data);
-        } else if ($indice == 3) {
-            $data['msg'] = "Função Editada com sucesso!";
-            $this->load->view('includes/msg_success', $data);
-        } else if ($indice == 4) {
-            $data['msg'] = "Erro ao editar a nova função no Banco de Dados!";
-            $this->load->view('includes/msg_error', $data);
-        } else {
-            
+        
+        if ($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsusario') == 7) {
+            $this->load->view("includes/header");
+            if ($indice == 1) {
+                $data['msg'] = "Função cadastrada com sucesso!";
+                $this->load->view('includes/msg_success', $data);
+            } else if ($indice == 2) {
+                $data['msg'] = "Erro ao cadastrar a nova função no Banco de Dados!";
+                $this->load->view('includes/msg_error', $data);
+            } else if ($indice == 3) {
+                $data['msg'] = "Função Editada com sucesso!";
+                $this->load->view('includes/msg_success', $data);
+            } else if ($indice == 4) {
+                $data['msg'] = "Erro ao editar a nova função no Banco de Dados!";
+                $this->load->view('includes/msg_error', $data);
+            }  
+        }else if($this->session->userdata('nivelUsuario') == 8) {
+            $this->load->view("includes/headerRecursosHumanos");
+            if ($indice == 1) {
+                $data['msg'] = "Função cadastrada com sucesso!";
+                $this->load->view('includes/msg_success', $data);
+            } else if ($indice == 2) {
+                $data['msg'] = "Erro ao cadastrar a nova função no Banco de Dados!";
+                $this->load->view('includes/msg_error', $data);
+            } else if ($indice == 3) {
+                $data['msg'] = "Função Editada com sucesso!";
+                $this->load->view('includes/msg_success', $data);
+            } else if ($indice == 4) {
+                $data['msg'] = "Erro ao editar a nova função no Banco de Dados!";
+                $this->load->view('includes/msg_error', $data);
+            } 
         }
-
-        $this->load->view("permissoes/listar", $dados);
-        $this->load->view("includes/footer");
+            $this->load->view("permissoes/listar", $dados);
+            $this->load->view("includes/footer");
     }
 
     public function cadastrar() {
         $this->verificar_sessao();
-
-        $this->load->view("includes/header");
-        $this->load->view("permissoes/cadastrar");
-        $this->load->view("includes/footer");
+        
+        if ($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7) {
+            $this->load->view('includes/header');
+            $this->load->view('permissoes/cadastrar');
+            $this->load->view('includes/footer');
+        } else if ($this->session->userdata('nivelUsuario') == 8) {
+            $this->load->view('includes/headerRecursosHumanos');
+            $this->load->view('permissoes/cadastrar');
+            $this->load->view('includes/footer');
+        }
     }
 
     public function cadastrando() {
@@ -90,10 +109,13 @@ class Permissoes extends CI_Controller {
 
     public function editar($id = null) {
         $this->verificar_sessao();
-
         $this->db->where('idPermissao', $id);
         $data['permissoes'] = $this->db->get('permissoes')->result();
+        if($this->session->userdata('nivelUsuario') == 1 || $this->session->userdata('nivelUsuario') == 7){
         $this->load->view("includes/header");
+        }else if($this->session->userdata('nivelUsuario') == 8){
+        $this->load->view('includes/headerRecursosHumanos');
+        }
         $this->load->view("permissoes/editar", $data);
         $this->load->view("includes/footer");
     }
