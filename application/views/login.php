@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <title>
-    Compasse Galagas
+    evol work remote
   </title>
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
@@ -70,7 +70,7 @@
             <span class="navbar-toggler-bar bar3"></span>
           </button>
         </div>
-        <a class="navbar-brand" href="javascript:void(0)">Bem Vindo ao Galagas da Compasse</a>
+        <a class="navbar-brand" href="javascript:void(0)">welcome to evol</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -134,7 +134,7 @@
                   <h1 class="card-title"></h1>
                 </div><br><br><br>-->
                 <div class="card-body">
-                    <h2 style="color:#fff; text-align: center">Galagas Login !</h2>
+                    <h2 style="color:#fff; text-align: center">eVoL <small style="color:#b33083">Login!</small></h2>
                     <small style="text-align:center;">&nbsp;ATENÇÃO! &nbsp;&nbsp;&nbsp;&nbsp;->&nbsp;&nbsp;&nbsp;&nbsp;Nunca compartilhe suas senhas!</small>
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -163,22 +163,22 @@
     <div class="container-fluid">
      <ul class="nav">
       <li class="nav-item">
-       <a href="https://www.compasse.com.br/" class="nav-link" target="_blank">
-        COMPASSE
+       <a href="#" class="nav-link" target="_blank">
+        PHILLINKS
        </a>
       </li>
       <li class="nav-item">
-       <a href="https://www.compasse.com.br/#empresa" class="nav-link" target="_blank">
+       <a href="#" class="nav-link" target="_blank">
         SOBRE NÓS
        </a>
       </li>
       <li class="nav-item">
-       <a href="https://www.compasse.com.br/#noticias" class="nav-link" target="_blank">
+       <a href="#" class="nav-link" target="_blank">
         NOTÍCIAS
        </a>
       </li>
        <li class="nav-item">
-       <a href="https://www.compasse.com.br/#servicos" class="nav-link" target="_blank">
+       <a href="#" class="nav-link" target="_blank">
         SERVIÇOS
        </a>
       </li>
