@@ -55,5 +55,6 @@ $route['Filiais/(:num)'] = "Filiais/index/$1";
 $route['Clientes/(:num)'] = "Clientes/index/$1";
 $route['Servicos/(:num)'] = "Servicos/index/$1";
 $route['Permissoes/(:num)'] = "Permissoes/index/$1";
+$route['Relatorios/(:num)'] = "Relatorios/index/$1";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
