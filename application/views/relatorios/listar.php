@@ -48,60 +48,92 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-group"><i class="fa fa-file-pdf"></i></a><br />
-                                            <a href="#" class="btn btn-success btn-group"><i class="fa fa-print"> </i></a>
+                                            <a href="#" class="btn btn-primary btn-group"><i class="fa fa-print"></i></a><br />
+                                            <a href="#" class="btn btn-success btn-group"><i class="fa fa-desktop"> </i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Serviços</td>
                                         <td>
-                                            <label>De:</label><br />
-                                            <input type="date" /><br />
-                                            <label>Até:</label><br />
-                                            <input type="date" /><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">De:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">Ate:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-group btn-block"> <i class="fa fa-file-pdf"> </i> Gerar Arquivo para PDF</a><br />
-                                            <a href="#" class="btn btn-success btn-group btn-block"> <i class="fa fa-eye"> </i> Visualizar em Tela</a>
+                                            <a href="#" class="btn btn-primary btn-group"><i class="fa fa-print"></i></a><br />
+                                            <a href="#" class="btn btn-success btn-group"><i class="fa fa-desktop"> </i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Processos</td>
                                         <td>
-                                            <label>De:</label><br />
-                                            <input class="inputRelatorio" type="date" /><br />
-                                            <label>Até:</label><br />
-                                            <input class="inputRelatorio" type="date" /><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">De:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">Ate:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-group btn-block"> <i class="fa fa-file-pdf"> </i> Gerar Arquivo para PDF</a><br />
-                                            <a href="#" class="btn btn-success btn-group btn-block"> <i class="fa fa-eye"> </i> Visualizar em Tela</a>
+                                            <a href="#" class="btn btn-primary btn-group"><i class="fa fa-print"></i></a><br />
+                                            <a href="#" class="btn btn-success btn-group"><i class="fa fa-desktop"> </i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Usuários</td>
                                         <td>
-                                            <label>De:</label><br />
-                                            <input type="date" /><br />
-                                            <label>Até:</label><br />
-                                            <input type="date" /><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">De:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">Ate:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-group btn-block"> <i class="fa fa-file-pdf"> </i> Gerar Arquivo para PDF</a><br />
-                                            <a href="#" class="btn btn-success btn-group btn-block"> <i class="fa fa-eye"> </i> Visualizar em Tela</a>
+                                            <a href="#" class="btn btn-primary btn-group"><i class="fa fa-print"></i></a><br />
+                                            <a href="#" class="btn btn-success btn-group"><i class="fa fa-desktop"> </i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Filiais</td>
                                         <td>
-                                            <label>De:</label><br />
-                                            <input type="date" /><br />
-                                            <label>Até:</label><br />
-                                            <input type="date" /><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">De:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">Ate:</label>
+                                                <div class="col-4">
+                                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-group btn-block"> <i class="fa fa-file-pdf"> </i> Gerar Arquivo para PDF</a><br />
-                                            <a href="#" class="btn btn-success btn-group btn-block"> <i class="fa fa-eye"> </i> Visualizar em Tela</a>
+                                            <a href="#" class="btn btn-primary btn-group"><i class="fa fa-print"></i></a><br />
+                                            <a href="#" class="btn btn-success btn-group"><i class="fa fa-desktop"> </i></a>
                                         </td>
                                     </tr>
                                 </table>
